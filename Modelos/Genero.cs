@@ -1,4 +1,6 @@
-class Genero
+namespace ScreenSound.Modelos;
+
+internal class Genero
 {
     public Genero(string nome)
     {

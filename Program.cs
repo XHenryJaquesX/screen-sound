@@ -1,7 +1,18 @@
-﻿//Screen Sound
+﻿using ScreenSound.Modelos;
 
-Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
-bandasRegistradas.Add("Manu Batidão", new List<int>());
+Artista nandoReis = new("Nando Reis");
+nandoReis.AdicionarNotaArtista(new Avaliacao (10));
+nandoReis.AdicionarNotaArtista(new Avaliacao (10));
+nandoReis.AdicionarNotaArtista(new Avaliacao (10));
+
+Artista manuBatidao = new("Manu Batidão");
+manuBatidao.AdicionarNotaArtista(new Avaliacao (4));
+manuBatidao.AdicionarNotaArtista(new Avaliacao (9));
+manuBatidao.AdicionarNotaArtista(new Avaliacao (7));
+
+Dictionary<string, Artista> bandasRegistradas = new();
+bandasRegistradas.Add(nandoReis.Nome, nandoReis);
+bandasRegistradas.Add(manuBatidao.Nome, manuBatidao);
 
 ExibirMenu();
 
@@ -62,15 +73,27 @@ void RegistrarAlbum()
     ");
     Console.Write("Digite a banda cujo álbum deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
-    Console.Write("Agora digite o título do álbum: ");
-    string tituloAlbum = Console.ReadLine()!;
-    //
-    // Espaço reservado
-    //
-    Thread.Sleep(1000);
-    Console.WriteLine($"\nO álbum {tituloAlbum} de {nomeDaBanda} foi registrado com sucesso!");
-    Thread.Sleep(4000);
-    ExibirTitulo();
+
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        Console.Write("\nAgora digite o título do álbum: ");
+        string tituloAlbum = Console.ReadLine()!;
+        Artista artista = bandasRegistradas[nomeDaBanda];
+        artista.AtribuirAlbumAoArtista(new Album(tituloAlbum));
+        Thread.Sleep(1000);
+        Console.WriteLine($"\nO álbum {tituloAlbum} de {nomeDaBanda} foi registrado com sucesso!");
+        Thread.Sleep(4000);
+        ExibirMenu();
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não existe!");
+        Console.WriteLine("\nDigite qualquer tecla para voltar ao menu principal:");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+    
+
 }
 
 void ExibeDetalhesBanda()
@@ -86,12 +109,19 @@ void ExibeDetalhesBanda()
     string nomeDaBanda = Console.ReadLine()!;
     if (bandasRegistradas.ContainsKey(nomeDaBanda))
     {
-        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
-        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+        Artista artista = bandasRegistradas[nomeDaBanda];
+        if (artista.Media == 0)
+        {
+            Console.WriteLine($"\nA banda {nomeDaBanda} ainda não recebeu notas");
+        }
+        else
+        {
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {artista.Media:F2}.");
+        }
         /**
         * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
         */
-        Console.WriteLine("Digite uma tecla para votar ao menu principal");
+        Console.WriteLine("\nDigite uma tecla para votar ao menu principal");
         Console.ReadKey();
         ExibirMenu();
 
@@ -116,7 +146,8 @@ void RegistrarBanda()
     ");
     Console.Write("\nDigite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
-    bandasRegistradas.Add(nomeDaBanda, new List<int>());
+    Artista artista = new(nomeDaBanda);
+    bandasRegistradas.Add(nomeDaBanda, artista);
     Thread.Sleep(2000);
     Console.WriteLine($"\nA banda {nomeDaBanda} foi registrada com sucesso!\n");
     Thread.Sleep(2000);
@@ -157,11 +188,12 @@ void AvaliarBanda()
     string bandaEscolhida = Console.ReadLine()!;
     if (bandasRegistradas.ContainsKey(bandaEscolhida))
     {
+        Artista artista = bandasRegistradas[bandaEscolhida];
         Console.Write($"\nDigite a nota para a banda {bandaEscolhida}: ");
-        int notaEscolhida = int.Parse(Console.ReadLine()!);
-        bandasRegistradas[bandaEscolhida].Add(notaEscolhida);
+        Avaliacao notaEscolhida = Avaliacao.Parse(Console.ReadLine()!);
+        artista.AdicionarNotaArtista(notaEscolhida);
         Thread.Sleep(1000);
-        Console.WriteLine($"\nA nota {notaEscolhida} foi atribuída a banda {bandaEscolhida}");
+        Console.WriteLine($"\nA nota {notaEscolhida.Nota} foi atribuída a banda {bandaEscolhida}");
         Thread.Sleep(4000);
         ExibirMenu();
     }

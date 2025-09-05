@@ -1,6 +1,9 @@
-class Artista
+namespace ScreenSound.Modelos;
+
+internal class Artista
 {
     private List<Album> listaDeAlbuns = new List<Album>();
+    private List<Avaliacao> listaDeNotas = new();
 
     public Artista(string nome)
     {
@@ -9,9 +12,29 @@ class Artista
 
     public string Nome { get; }
 
+    public double Media
+    {
+        get
+        {
+            if (listaDeNotas.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return listaDeNotas.Average(a => a.Nota);
+            }
+        }
+    }
+
     public void AtribuirAlbumAoArtista(Album album)
     {
         listaDeAlbuns.Add(album);
+    }
+
+    public void AdicionarNotaArtista(Avaliacao nota)
+    {
+        listaDeNotas.Add(nota);
     }
 
     public void ExibirAlbunsDoArtirsta()
