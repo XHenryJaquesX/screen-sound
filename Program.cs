@@ -1,24 +1,9 @@
 ﻿//Screen Sound
 
-Dictionary<string, List<float>> bandasRegistradas = new Dictionary<string, List<float>>();
-bandasRegistradas.Add("Manu Batidão", new List<float>());
+Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
+bandasRegistradas.Add("Manu Batidão", new List<int>());
 
 ExibirMenu();
-
-void ExibirTitulo()
-{
-    string mensagemDeBoasVindas = "Boas vindas ao Screen Sound";
-    Console.WriteLine(@"
-
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
-");
-    Console.WriteLine(mensagemDeBoasVindas);
-}
 
 void ExibirMenu()
 {
@@ -26,9 +11,10 @@ void ExibirMenu()
     ExibirTitulo();
     Console.WriteLine(@"
 Digite 1 para registrar uma banda
-Digite 2 para mostrar todas as bandas
-Digite 3 para avaliar uma banda
-Digite 4 para exibir a média de uma banda
+Digite 2 para registrar o álbum de uma banda
+Digite 3 para mostrar todas as bandas
+Digite 4 para avaliar uma banda
+Digite 5 para exibir os detalhes de uma banda
 Digite -1 para sair
     ");
     Console.Write("Escolha: ");
@@ -41,30 +27,86 @@ Digite -1 para sair
             RegistrarBanda();
         break;
         case 2:
-            MostrarBandas();
-        break;
+            RegistrarAlbum();
+            break;
         case 3:
-            AvaliarBanda();
-        break;
+            MostrarBandas();
+            break;
         case 4:
-            MostrarMediaBanda();
-        break;
+            AvaliarBanda();
+            break;
+        case 5:
+            ExibeDetalhesBanda();
+            break;
         case -1:
             Console.WriteLine("\nAdeus :)\n");
-        break;
+            break;
         default:
             Console.WriteLine("Opção inválida!!");
             Thread.Sleep(2000);
             Console.Clear();
             ExibirMenu();
-        break;
+            break;
     }
 
 }
 
+void RegistrarAlbum()
+{
+    Console.Clear();
+    Console.WriteLine(@"
+█████████████████▀██████████████████████████████████████████████████████████████████████
+█▄─▄▄▀█▄─▄▄─█─▄▄▄▄█▄─▄█─▄▄▄▄█─▄─▄─█▄─▄▄▀██▀▄─██▄─▄▄▀████▀▄─██▄─▄███▄─▄─▀█▄─██─▄█▄─▀█▀─▄█
+██─▄─▄██─▄█▀█─██▄─██─██▄▄▄▄─███─████─▄─▄██─▀─███─▄─▄████─▀─███─██▀██─▄─▀██─██─███─█▄█─██
+▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▄▀▄▄▄▀
+    ");
+    Console.Write("Digite a banda cujo álbum deseja registrar: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    Console.Write("Agora digite o título do álbum: ");
+    string tituloAlbum = Console.ReadLine()!;
+    //
+    // Espaço reservado
+    //
+    Thread.Sleep(1000);
+    Console.WriteLine($"\nO álbum {tituloAlbum} de {nomeDaBanda} foi registrado com sucesso!");
+    Thread.Sleep(4000);
+    ExibirTitulo();
+}
+
+void ExibeDetalhesBanda()
+{
+    Console.Clear();
+    Console.WriteLine(@"
+█████████████████████████████████████████████████████████████████████████████████
+█▄─▄▄─█▄─▀─▄█▄─▄█▄─▄─▀█▄─▄█▄─▄▄▀███▄─▄▄▀█▄─▄▄─█─▄─▄─██▀▄─██▄─▄███─█─█▄─▄▄─█─▄▄▄▄█
+██─▄█▀██▀─▀███─███─▄─▀██─███─▄─▄████─██─██─▄█▀███─████─▀─███─██▀█─▄─██─▄█▀█▄▄▄▄─█
+▀▄▄▄▄▄▀▄▄█▄▄▀▄▄▄▀▄▄▄▄▀▀▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▄▀▀▄▄▄▄▄▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▀▄▀▄▄▄▄▄▀▄▄▄▄▄▀
+    ");
+    Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+        /**
+        * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
+        */
+        Console.WriteLine("Digite uma tecla para votar ao menu principal");
+        Console.ReadKey();
+        ExibirMenu();
+
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não existe!");
+        Console.WriteLine("\nDigite qualquer tecla para voltar ao menu principal:");
+        Console.ReadKey();
+        ExibirMenu();
+    }
+}
+
 void RegistrarBanda()
 {
-    string mensagemRegistroDeBanda = "Boas vindas ao Registro de Bandas\n";
     Console.Clear();
     Console.WriteLine(@"
 █████████████████▀██████████████████████████████████████████████████████████████████████████████████
@@ -72,10 +114,9 @@ void RegistrarBanda()
 ██─▄─▄██─▄█▀█─██▄─██─██▄▄▄▄─███─████─▄─▄█─██─████─██─██─▄█▀████─▄─▀██─▀─███─█▄▀─███─██─██─▀─██▄▄▄▄─█
 ▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▄▀
     ");
-    Console.WriteLine(mensagemRegistroDeBanda);
-    Console.Write("Digite o nome da banda que deseja registrar: ");
+    Console.Write("\nDigite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
-    bandasRegistradas.Add(nomeDaBanda, new List<float>());
+    bandasRegistradas.Add(nomeDaBanda, new List<int>());
     Thread.Sleep(2000);
     Console.WriteLine($"\nA banda {nomeDaBanda} foi registrada com sucesso!\n");
     Thread.Sleep(2000);
@@ -107,17 +148,17 @@ void AvaliarBanda()
 {
     Console.Clear();
     Console.WriteLine(@"
-█████████████████▀█████████████████████████████████████████████████████████████████████
-█▄─▄▄▀█▄─▄▄─█─▄▄▄▄█▄─▄█─▄▄▄▄█─▄─▄─█▄─▄▄▀██▀▄─██▄─▄▄▀███▄─▄─▀██▀▄─██▄─▀█▄─▄█▄─▄▄▀██▀▄─██
-██─▄─▄██─▄█▀█─██▄─██─██▄▄▄▄─███─████─▄─▄██─▀─███─▄─▄████─▄─▀██─▀─███─█▄▀─███─██─██─▀─██
-▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▀▀▄▄▀▄▄▀
+███████████████████████████████████████████████████████████████████████████
+██▀▄─██▄─█─▄██▀▄─██▄─▄███▄─▄██▀▄─██▄─▄▄▀███▄─▄─▀██▀▄─██▄─▀█▄─▄█▄─▄▄▀██▀▄─██
+██─▀─███▄▀▄███─▀─███─██▀██─███─▀─███─▄─▄████─▄─▀██─▀─███─█▄▀─███─██─██─▀─██
+▀▄▄▀▄▄▀▀▀▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▀▀▄▄▀▄▄▀
     ");
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string bandaEscolhida = Console.ReadLine()!;
     if (bandasRegistradas.ContainsKey(bandaEscolhida))
     {
         Console.Write($"\nDigite a nota para a banda {bandaEscolhida}: ");
-        float notaEscolhida = float.Parse(Console.ReadLine()!);
+        int notaEscolhida = int.Parse(Console.ReadLine()!);
         bandasRegistradas[bandaEscolhida].Add(notaEscolhida);
         Thread.Sleep(1000);
         Console.WriteLine($"\nA nota {notaEscolhida} foi atribuída a banda {bandaEscolhida}");
@@ -133,30 +174,17 @@ void AvaliarBanda()
     }
 }
 
-void MostrarMediaBanda()
+void ExibirTitulo()
 {
-    Console.Clear();
+    string mensagemDeBoasVindas = "Boas vindas ao Screen Sound";
     Console.WriteLine(@"
-███████████████████████████████████████████████████████████████████████████████
-█▄─▀█▀─▄█▄─▄▄─█▄─▄▄▀█▄─▄██▀▄─████▄─▄▄▀██▀▄─████▄─▄─▀██▀▄─██▄─▀█▄─▄█▄─▄▄▀██▀▄─██
-██─█▄█─███─▄█▀██─██─██─███─▀─█████─██─██─▀─█████─▄─▀██─▀─███─█▄▀─███─██─██─▀─██
-▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▀▀▄▄▀▄▄▀
-    ");
-    Console.Write("Digite o nome da banda que deseja ver a média: ");
-    string bandaEscolhida = Console.ReadLine()!;
-    Thread.Sleep(1000);
-    if (bandasRegistradas.ContainsKey(bandaEscolhida))
-    {
-        Console.WriteLine($"\nA média de notas da banda {bandaEscolhida} é {bandasRegistradas[bandaEscolhida].Average():F2}!");
-        Console.Write("\nDigite qualquer tecla para voltar ao menu principal:");
-        Console.ReadKey();
-        ExibirMenu();
-    }
-    else
-    {
-        Console.WriteLine($"\nA banda {bandaEscolhida} não existe!");
-        Console.Write("\nDigite qualquer tecla para voltar ao menu principal:");
-        Console.ReadKey();
-        ExibirMenu();
-    }
+
+░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
+██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
+╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
+░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
+██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
+╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
+");
+    Console.WriteLine(mensagemDeBoasVindas);
 }
