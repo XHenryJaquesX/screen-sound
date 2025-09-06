@@ -1,17 +1,16 @@
 namespace ScreenSound.Modelos;
 
-internal class Artista
+internal class Banda : IAvaliavel
 {
     private List<Album> listaDeAlbuns = new List<Album>();
     private List<Avaliacao> listaDeNotas = new();
 
-    public Artista(string nome)
+    public Banda(string nome)
     {
         Nome = nome;
     }
 
     public string Nome { get; }
-
     public double Media
     {
         get
@@ -26,18 +25,19 @@ internal class Artista
             }
         }
     }
+    public List<Album> Albuns => listaDeAlbuns;
 
-    public void AtribuirAlbumAoArtista(Album album)
+    public void AtribuirAlbumABanda(Album album)
     {
         listaDeAlbuns.Add(album);
     }
 
-    public void AdicionarNotaArtista(Avaliacao nota)
+    public void AdicionarNota(Avaliacao nota)
     {
         listaDeNotas.Add(nota);
     }
 
-    public void ExibirAlbunsDoArtirsta()
+    public void ExibirAlbunsDaBanda()
     {
         Console.WriteLine($"Esses são os albuns do artista {Nome}\n");
         for (int i = 0; i < listaDeAlbuns.Count; i++)

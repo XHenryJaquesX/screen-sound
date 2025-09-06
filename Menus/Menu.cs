@@ -5,7 +5,7 @@ namespace ScreenSound.Menus;
 
 internal class Menu
 {
-    public virtual void Executar(Dictionary<string, Artista> bandasRegistradas)
+    public virtual void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         Console.Clear();
     }

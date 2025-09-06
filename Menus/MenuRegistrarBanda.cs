@@ -4,7 +4,7 @@ namespace ScreenSound.Menus;
 
 internal class MenuRegistrarBanda : Menu
 {
-    public override void Executar(Dictionary<string, Artista> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         base.Executar(bandasRegistradas);
         Console.WriteLine(@"
@@ -15,8 +15,8 @@ internal class MenuRegistrarBanda : Menu
         ");
         Console.Write("\nDigite o nome da banda que deseja registrar: ");
         string nomeDaBanda = Console.ReadLine()!;
-        Artista artista = new(nomeDaBanda);
-        bandasRegistradas.Add(nomeDaBanda, artista);
+        Banda banda = new(nomeDaBanda);
+        bandasRegistradas.Add(nomeDaBanda, banda);
         Thread.Sleep(2000);
         Console.WriteLine($"\nA banda {nomeDaBanda} foi registrada com sucesso!\n");
         Thread.Sleep(2000);

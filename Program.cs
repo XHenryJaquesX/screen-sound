@@ -1,17 +1,18 @@
 ﻿using ScreenSound.Modelos;
 using ScreenSound.Menus;
 
-Artista nandoReis = new("Nando Reis");
-nandoReis.AdicionarNotaArtista(new Avaliacao (10));
-nandoReis.AdicionarNotaArtista(new Avaliacao (10));
-nandoReis.AdicionarNotaArtista(new Avaliacao (10));
 
-Artista manuBatidao = new("Manu Batidão");
-manuBatidao.AdicionarNotaArtista(new Avaliacao (4));
-manuBatidao.AdicionarNotaArtista(new Avaliacao (9));
-manuBatidao.AdicionarNotaArtista(new Avaliacao (7));
+Banda nandoReis = new("Nando Reis");
+nandoReis.AdicionarNota(new Avaliacao (10));
+nandoReis.AdicionarNota(new Avaliacao (10));
+nandoReis.AdicionarNota(new Avaliacao (10));
 
-Dictionary<string, Artista> bandasRegistradas = new();
+Banda manuBatidao = new("Manu Batidão");
+manuBatidao.AdicionarNota(new Avaliacao (4));
+manuBatidao.AdicionarNota(new Avaliacao (9));
+manuBatidao.AdicionarNota(new Avaliacao (7));
+
+Dictionary<string, Banda> bandasRegistradas = new();
 bandasRegistradas.Add(nandoReis.Nome, nandoReis);
 bandasRegistradas.Add(manuBatidao.Nome, manuBatidao);
 
@@ -20,7 +21,8 @@ opcoes.Add(1, new MenuRegistrarBanda());
 opcoes.Add(2, new MenuRegistrarAlbum());
 opcoes.Add(3, new MenuMostrarBandas());
 opcoes.Add(4, new MenuAvaliarBanda());
-opcoes.Add(5, new MenuExibirDetalhesBanda());
+opcoes.Add(5, new MenuAvaliarAlbum());
+opcoes.Add(6, new MenuExibirDetalhesBanda());
 opcoes.Add(-1, new MenuSair());
 
 
@@ -43,7 +45,8 @@ Digite 1 para registrar uma banda
 Digite 2 para registrar o álbum de uma banda
 Digite 3 para mostrar todas as bandas
 Digite 4 para avaliar uma banda
-Digite 5 para exibir os detalhes de uma banda
+Digite 5 para avaliar um album
+Digite 6 para exibir os detalhes de uma banda
 Digite -1 para sair
     ");
     Console.Write("Escolha: ");

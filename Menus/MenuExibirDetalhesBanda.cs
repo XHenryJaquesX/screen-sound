@@ -4,7 +4,7 @@ namespace ScreenSound.Menus;
 
 internal class MenuExibirDetalhesBanda : Menu
 {
-    public override void Executar(Dictionary<string, Artista> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         base.Executar(bandasRegistradas);
         Console.WriteLine(@"
@@ -17,18 +17,29 @@ internal class MenuExibirDetalhesBanda : Menu
         string nomeDaBanda = Console.ReadLine()!;
         if (bandasRegistradas.ContainsKey(nomeDaBanda))
         {
-            Artista artista = bandasRegistradas[nomeDaBanda];
-            if (artista.Media == 0)
+            Banda banda = bandasRegistradas[nomeDaBanda];
+            if (banda.Media == 0)
             {
                 Console.WriteLine($"\nA banda {nomeDaBanda} ainda não recebeu notas");
             }
             else
             {
-            Console.WriteLine($"\nA média da banda {nomeDaBanda} é {artista.Media:F2}.");
+                Console.WriteLine($"\nA média da banda {nomeDaBanda} é {banda.Media:F2}.");
             }
-            /**
-            * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
-            */
+            if (banda.Albuns.Count == 0)
+            {
+                Console.WriteLine($"A banda {nomeDaBanda} ainda não possui albuns");
+            }
+            else
+            {
+            Console.WriteLine($"\nAlbuns da banda {nomeDaBanda}:\n");
+            }
+            int contador = 1;
+            foreach (Album album in banda.Albuns)
+            {
+                Console.WriteLine($"Album {contador}: {album.Nome} {(album.Media == 0? "- ainda não recebeu nota" : "- possui a nota " + album.Media)}");
+                contador++;
+            }
             Console.WriteLine("\nDigite uma tecla para votar ao menu principal");
             Console.ReadKey();
         }

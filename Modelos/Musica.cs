@@ -2,22 +2,22 @@ namespace ScreenSound.Modelos;
 
 internal class Musica
 {
-    public Musica(string nome, Genero genero, Artista artista)
+    public Musica(string nome, Genero genero, Banda banda)
     {
-        Artista = artista;
+        Banda = banda;
         Nome = nome;
         Genero = genero;
     }
     public string Nome { get; }
-    public Artista Artista { get; }
+    public Banda Banda { get; }
     public int Duracao { get; set; }
     public bool Disponivel { get; set; }
     public Genero Genero { get; }
-    public string DescricaoResumida => $"A música {Nome} pertence ao artista {Artista.Nome}";
+    public string DescricaoResumida => $"A música {Nome} pertence a banda {Banda.Nome}";
     public void ExibeFichaTecnicaMusica()
     {
         Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Artista: {Artista.Nome}");
+        Console.WriteLine($"Artista: {Banda.Nome}");
         Console.WriteLine($"Duração: {Duracao} segundos");
         Console.WriteLine($"Gênero: {Genero.Nome}");
         if (Disponivel)
