@@ -1,6 +1,6 @@
-using ScreenSound.Modelos;
+using Projeto_1.Modelos;
 
-namespace ScreenSound.Menus;
+namespace Projeto_1.Menus;
 
 internal class MenuAvaliarBanda : Menu
 {

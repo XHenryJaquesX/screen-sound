@@ -1,5 +1,6 @@
-using ScreenSound.Modelos;
-namespace ScreenSound.Menus;
+using Projeto_1.Menus;
+using Projeto_1.Modelos;
+namespace Projeto_1.Menus;
 
 internal class MenuAvaliarAlbum : Menu
 {

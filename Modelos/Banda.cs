@@ -1,4 +1,4 @@
-namespace ScreenSound.Modelos;
+namespace Projeto_1.Modelos;
 
 internal class Banda : IAvaliavel
 {

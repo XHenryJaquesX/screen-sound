@@ -1,5 +1,5 @@
-﻿using ScreenSound.Modelos;
-using ScreenSound.Menus;
+﻿using Projeto_1.Modelos;
+using Projeto_1.Menus;
 
 
 Banda nandoReis = new("Nando Reis");
